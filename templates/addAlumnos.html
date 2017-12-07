@@ -1,0 +1,112 @@
+{% extends "base/overall.html" %}
+
+{% block content %}
+        <div class="row">
+            <div class="col s2 leftMenu">
+                <div>
+                    <h4><img src="../../static/img/LogoADSI.png" style="width: 100%;"></h4>
+                </div>
+                <ul>
+                    <a href="../"><li><i class="material-icons icon-menu">blur_on</i><span>Principal</span></li></a>
+                    <a href="{% url "agregarGrupos" %}"><li><i class="material-icons icon-menu">group</i><span>Añadir grupo</span></li></a>
+                    <a href="{% url "setGrupos" %}"><li><i class="material-icons icon-menu">settings</i><span>Administrar grupo</span></li></a>
+                    <a href="{% url "asistencia" %}"><li><i class="material-icons icon-menu">assignment_turned_in</i><span>Asistencia</span></li></a>
+                    <a href="{% url "proyecto" %}"><li><i class="material-icons icon-menu">work</i><span>Proyecto</span></li></a>
+                    <a href="{% url "works" %}"><li><i class="material-icons icon-menu">pan_tool</i><span>Participaciones</span></li></a>
+                    <a href="{% url "exam" %}"><li><i class="material-icons icon-menu">description</i><span>Examenes</span></li></a>
+                    <a href="{% url "report" %}"><li><i class="material-icons icon-menu">assignment</i><span>Reportes</span></li></a>
+                </ul>
+            </div>
+            <div class="col s10" style="padding: 0%;display: block;overflow:scroll;height: 100vh;">
+                <div class="mainNav">
+                    <div class="row">
+                        <div class="col s6" style="line-height: 5">
+                            <span><a href="../../">home </a> / <a href="../../setGroup">Administrar grupo </a>/ Grupo {{ horario.0.materia }}</span>
+                        </div>
+                        <div class="col s6" style="text-align: right; line-height: 3">
+                            <ul>
+                                <li>
+                                    <a class="dropdown-button" href="#!" data-activates="dropdown1" style="color:black;">
+                                        {{ usuario }}
+                                        <i class="material-icons right" style="line-height: 1.8">arrow_drop_down</i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12" id="pagesTitles">
+                        <i class="material-icons icon-menu-title">group</i><span id="title">{{ horario.0.materia }}</span>
+                        <br>
+                        <span style="color: #9B9B9B;font-size: 14px">Edita o agrega información del grupo/alumnos</span>
+                    </div>
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span><b>Materia:</b> {{ horario.0.materia }}<b style="padding-left:5%"> Aula: </b> {{ horario.0.materia }} <b style="padding-left:5%"> Horario: </b>{{ horario.0.horaInicio }} - {{ horario.0.horaFinal }} </span>
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Expediente</th>
+                                            <th>Nombre del alumno</th>
+                                            <th>Carrera</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="alumnosTab">
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="fixed-action-btn horizontal mobilePos">
+                        <a class="btn-floating btn-large red">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                        <ul>
+                            <li><a class="btn-floating red"><i class="material-icons addAlumno"  href="#modal1" title="Agregar alumnos">add</i></a></li>
+                            <li><a class="btn-floating yellow darken-1"><i class="material-icons settings"  href="#modal1">settings</i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col s3">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">Mi perfil</a></li>
+            <li><a href="http://adsi.fuzionwebh.com/adsiProyecto/">Documentación</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'close' %}">Cerrar sesión</a></li>
+        </ul>
+
+        <div id="modal1" class="modal">
+
+            <div class="modal-content">
+                <h4 id="modalTitle">Modal Header</h4>
+                <p id="modalBody">A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="buttonSendModal" class="modal-action waves-effect waves-green btn-flat">Agregar</a>
+            </div>
+        </div>
+
+        <div class="fixed-action-btn toolbar menuMobile" style="text-align: center; width: 100%; bottom: 0px; left: 0px; transition: transform 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53), background-color 0s linear 0.2s; overflow: hidden; background-color: #474747;">
+            <ul>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">group</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">settings</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">assignment_turned_in</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">blur_on</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">pan_tool</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">description</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">assignment</i></a></li>
+            </ul>
+        </div>
+{% endblock %}

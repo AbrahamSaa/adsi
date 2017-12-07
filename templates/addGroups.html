@@ -1,0 +1,90 @@
+{% extends "base/overall.html" %}
+
+{% block content %}
+        <div class="row">
+            <div class="col s2 leftMenu">
+                <div>
+                    <h4><img src="../static/img/LogoADSI.png" style="width: 100%;"></h4>
+                </div>
+                <ul>
+                    <a href="../"><li><i class="material-icons icon-menu">blur_on</i><span>Principal</span></li></a>
+                    <a href="{% url "agregarGrupos" %}"><li><i class="material-icons icon-menu">group</i><span>Añadir grupo</span></li></a>
+                    <a href="{% url "setGrupos" %}"><li><i class="material-icons icon-menu">settings</i><span>Administrar grupo</span></li></a>
+                    <a href="{% url "asistencia" %}"><li><i class="material-icons icon-menu">assignment_turned_in</i><span>Asistencia</span></li></a>
+                    <a href="{% url "proyecto" %}"><li><i class="material-icons icon-menu">work</i><span>Proyecto</span></li></a>
+                    <a href="{% url "works" %}"><li><i class="material-icons icon-menu">pan_tool</i><span>Participaciones</span></li></a>
+                    <a href="{% url "exam" %}"><li><i class="material-icons icon-menu">description</i><span>Examenes</span></li></a>
+                    <a href="{% url "report" %}"><li><i class="material-icons icon-menu">assignment</i><span>Reportes</span></li></a>
+                </ul>
+            </div>
+            <div class="col s10" style="padding: 0%;display: block;overflow:scroll;height: 100vh;">
+                <div class="mainNav">
+                    <div class="row">
+                        <div class="col s6" style="line-height: 5">
+                            <span><a href="../">home</a> / añadir grupos</span>
+                        </div>
+                        <div class="col s6" style="text-align: right; line-height: 3">
+                            <ul>
+                                <li>
+                                    <a class="dropdown-button" href="#!" data-activates="dropdown1" style="color:black;">
+                                        {{ usuario }}
+                                        <i class="material-icons right" style="line-height: 1.8">arrow_drop_down</i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12" id="pagesTitles">
+                        <i class="material-icons icon-menu-title">group</i><span id="title">Añadir grupo</span>
+                        <br>
+                        <span style="color: #9B9B9B;font-size: 14px">En esta sección podras crear nuevos grupos</span>
+                    </div>
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {{ form_grupo.as_p }}
+                                    <label>Seleccione días que imparte la materia</label>
+                                    {% for choice in dias %}
+                                        <br>
+                                        <input type="checkbox" id="{{ choice.1 }}" name="days[]" value="{{ choice.1 }}"/>
+                                        <label for="{{ choice.1 }}">{{ choice.1 }}</label>
+                                    {% endfor %}
+                                    <br><br>
+                                    <button type="submit" class="btn waves-effect waves-light" style="width:100%" name="iniciar">Agregar nuevo grupo</button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">Mi perfil</a></li>
+            <li><a href="http://adsi.fuzionwebh.com/adsiProyecto/">Documentación</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'close' %}">Cerrar sesión</a></li>
+        </ul>
+        {% if ingreso %}
+            <script>
+                Materialize.toast('Se agrego el nuevo grupo', 4000);
+            </script>
+        {% endif  %}
+    <div class="fixed-action-btn toolbar menuMobile" style="text-align: center; width: 100%; bottom: 0px; left: 0px; transition: transform 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53), background-color 0s linear 0.2s; overflow: hidden; background-color: #474747;">
+            <ul>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">group</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">settings</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">assignment_turned_in</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">blur_on</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">pan_tool</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">description</i></a></li>
+                <li class="waves-effect waves-light" style="opacity: 1;visibility: visible;"><a href="#!"><i class="material-icons">assignment</i></a></li>
+            </ul>
+        </div>
+{% endblock %}

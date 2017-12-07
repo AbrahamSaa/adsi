@@ -1,0 +1,19 @@
+@media screen and (max-width: 830px) {
+    .loginForm
+    {
+        width: 50%;
+    }
+
+    .mobilePos
+    {
+        padding-bottom: 6.5% !important;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .loginForm
+    {
+        width: 70%;
+    }
+}
+

@@ -1,0 +1,133 @@
+body
+{
+    background-color: #F9F9F9;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+.loginForm
+{
+    text-align: center;
+    width:35%;
+    height:85%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.menuMobile
+{
+    display: none;
+}
+
+.loginForm h1
+{
+
+}
+
+.tabs .tab a.active
+{
+    color: #00897b;
+}
+
+.tabs .tab a:hover
+{
+    color:#00897b;
+}
+
+.tabs .tab a
+{
+    color:black;
+}
+
+.tabs .indicator
+{
+    background-color:#00897b;
+}
+
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea
+{
+    margin: 0% 0% 2% 0% !important;
+}
+
+.mainNav
+{
+    background-color: #FFFFFF !important;
+    color: #000 !important;
+    width: 100% !important;
+    padding:0% 2%;
+    box-shadow: 0 4px 2px -4px gray;
+}
+
+.leftMenu
+{
+	height: 100vh;
+	background-color: #474747;
+	z-index: 2;
+    color:white;
+}
+
+.leftMenu li
+{
+    padding:8%;
+    margin-left: -5%;
+    margin-right: -4%;
+}
+
+.leftMenu li:hover
+{
+    background-color: #404040;
+}
+
+.icon-menu
+{
+    color:white;
+    display: inline-flex;
+    padding-right:5%;
+    vertical-align: top;
+}
+
+.icon-menu-title
+{
+    display: inline-flex;
+    padding-right:1%;
+    vertical-align: top;
+}
+
+#pagesTitles #title
+{
+    color:#e91e63;
+    font-size: 14pt;
+}
+
+.leftMenu li span
+{
+    font-size: 14px;
+    color: white;
+    line-height:24px
+}
+
+.dropdown-content
+{
+    width: auto !important;
+    margin-right: 5%;
+}
+
+@media only screen and (max-width: 768px){
+    .leftMenu
+    {
+        display: none;
+    }
+
+    .s10
+    {
+        width: 100% !important;
+    }
+
+    .menuMobile
+    {
+        display: block;
+    }
+}
