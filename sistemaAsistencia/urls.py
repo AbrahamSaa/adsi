@@ -21,6 +21,7 @@ import maestro.views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name="login"),
+    url(r'^login/$', views.index, name="login"),
     url(r'^close$', views.close, name="close"),
     url(r'^addGroup/$', maestro.views.crearGrupo, name="agregarGrupos"),
     url(r'^setGroup/$', maestro.views.setGrupo, name="setGrupos"),

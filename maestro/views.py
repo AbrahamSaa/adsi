@@ -122,6 +122,7 @@ def deletesGroup(request, id_group):
             })
 
 
+
 def addAlumnos(request, id_group):
     idUser = request.session['idUser']
     nivel = request.session['nivel']
@@ -277,6 +278,8 @@ def addAlumnosurl(request):
                 idClase=request.POST["id"]
             )
             clase.save()
+            clase.clean()
+            alumno.clean()
             return HttpResponse(True)
 
 @csrf_exempt

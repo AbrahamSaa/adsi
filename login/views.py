@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from login.models import claves, registro
 from maestro.models import grupo, dias
@@ -44,12 +44,27 @@ def index(request):
                 nivel = key.nivel
             request.session['idUser'] = str(id)
             request.session['nivel'] = str(nivel)
-            nivel = request.session['nivel']
             datos = registro.objects.filter(id=request.session['idUser'])
+
+            for key in datos:
+                usuario = key.usuario
+                
+            idUser = request.session['idUser']
+            nivel = request.session['nivel']
+            datos = registro.objects.filter(id=idUser)
             for key in datos:
                 usuario = key.usuario
 
-            return render(request, "home.html", {"usuario": usuario, "nivel":nivel})
+            group = grupo.objects.filter(idMaestro=idUser)
+            idDia = []
+            for key in group:
+                idDia.append(key.id)
+
+            days = dias.objects.filter(idHorario__in=(idDia))
+
+            horario = zip(list(group), list(days))
+
+            return render(request, "home.html", {"usuario": usuario, "nivel": nivel, "horario": horario, "dias": days})
         else:
             return render(request,"index.html", {"form_registro": forms.registro, "form_login": forms.login})
 
@@ -81,4 +96,4 @@ def close(request):
     del request.session['idUser']
     del request.session['nivel']
 
-    return render(request, 'index.html', {"form_registro": forms.registro, "form_login": forms.login})
+    return redirect("login")

@@ -83,7 +83,10 @@
         {% if messageDelete %}
             <script>
                 Materialize.toast('Se elimino el grupo', 4000);
-                window.location("/setGroup/");
+                setTimeout(redirection, 3000);
+                function redirection() {
+                    window.location.href = "/setGroup/";
+                }
             </script>
         {% endif %}
     <div class="fixed-action-btn toolbar menuMobile" style="text-align: center; width: 100%; bottom: 0px; left: 0px; transition: transform 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53), background-color 0s linear 0.2s; overflow: hidden; background-color: #474747;">

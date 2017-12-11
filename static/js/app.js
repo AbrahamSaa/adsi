@@ -356,6 +356,7 @@ function addAlumnos() {
         var url = document.URL;
         url = url.split("/");
         url = url[4];
+        console.log(nombre,carrera,url);
         $.ajax({
             method: "POST",
             url:"/addAlumnosurl/",
@@ -577,7 +578,6 @@ function openModalCalif(id){
 function calif(array) {
     var calif = 0;
     var totalExam = $("#totalExam").val();
-    console.log(array);
 
     if(totalExam != 0){
         var examAvg = $("#examAvg").val();
@@ -588,7 +588,9 @@ function calif(array) {
         }
 
         examV = examV/ totalExam;
-        calif += (examV*examAvg)/100;
+        var examClean = (examV*examAvg)/100;
+        proyV = getNum(examClean);
+        calif += examClean;
     }
 
     var totalProy = $("#totalProy").val();
@@ -603,6 +605,7 @@ function calif(array) {
 
         proyV = proyV/ totalProy;
         proyV = ((proyV*proyAvg)/100);
+        proyV = getNum(proyV);
         calif = proyV+calif;
     }
 
@@ -615,6 +618,7 @@ function calif(array) {
         att = att*$("#attAvg").val();
         att = att/attTotal;
 
+        att = getNum(att);
         calif += att;
     }
 
@@ -627,11 +631,11 @@ function calif(array) {
 
         homeWork = homeWork/totalHome;
 
+        homeWork = getNum(homeWork);
         calif += homeWork;
     }
 
     var totalPart = $("#totalProjects").val();
-
     if(totalHome > 0){
         var part = array["Participacion"];
         var partAvg = parseFloat($("#partAvg").val());
@@ -639,11 +643,19 @@ function calif(array) {
         part = part*partAvg;
 
         part = part/totalPart;
-
+        part = getNum(part);
         calif += part;
+
     }
 
     console.log(calif);
 
     return calif;
+}
+
+function getNum(val) {
+   if (isNaN(val)) {
+     return 0;
+   }
+   return val;
 }
